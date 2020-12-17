@@ -16,14 +16,14 @@ subplot(1,2,1)
 hold on;
 grid on;
 xlabel('time','FontSize',18)
-ylabel('speed (m/s)','FontSize',18)
+ylabel('linear acceleration (m/s^2)','FontSize',18)
 %axis([0 20 0 40])
-stairs(tt,a,'r')
+stairs(tt,a,'r','LineWidth',1.5)
 
 subplot(1,2,2)
 hold on;
 grid on;
 xlabel('time','FontSize',18)
-ylabel('omega (rad/s)','FontSize',18)
+ylabel('angular acceleration (rad/s^2)','FontSize',18)
 %axis([0 20 0 40])
-stairs(tt,a_omega,'r')
+stairs(tt,a_omega,'r','LineWidth',1.5)

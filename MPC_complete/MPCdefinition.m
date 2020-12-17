@@ -91,7 +91,7 @@ condv     = x0(4);
 
 %%
 % Objective function coefficients
-nlobj.Weights.ManipulatedVariables = [0.001 0.001];
+nlobj.Weights.ManipulatedVariables = [0.01 0.01];
 nlobj.Weights.ManipulatedVariablesRate = [0.1 0.1];
 nlobj.Weights.OutputVariables = [10 10 0 1 1];
 %%
@@ -109,7 +109,12 @@ omega_min_perc = -0.1;
 omega_max_perc = 0.1;
 v_min_perc = -0.5;
 v_max_perc = 0.5;
-
+%{
+omega_min_perc = -1;
+omega_max_perc = 1;
+v_min_perc = -2;
+v_max_perc = 2;
+%}
 %% Observer
 k_obsx = 5;
 k_obsy = 5;
@@ -119,4 +124,6 @@ open_system('ControlSim')
 % Time for the simulation
 T = 40;
 
-
+%% circumference
+%
+slope_circ = 0.5;

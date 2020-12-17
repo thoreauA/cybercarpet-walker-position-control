@@ -1,33 +1,23 @@
-
-%% Animation of the walker
-% Thhis script shows an animation of the control NLMPC for the CyberCarpert
+%% Trajectory of the walker 
+% This script shows frames of the animation of the control NLMPC for the CyberCarpert
 % platform. Two triangles are shown for initial and final configurations
 % of the walker (position and orientation), then the motion of the walker 
 % is shown. It is represented by a red circle for the position (x,y) and a
-% red segment indicates the orientation. On the right it is shown the
-% walker velocity in x and y axis.
-
-%%
-close all
-hold off
-clf
+% red segment indicates the orientation.
+close all; hold off; clf
 
 %% Input variables from the Simulink simulation
 %
 x       = out.configuration.signals.values(:,1);
 y       = out.configuration.signals.values(:,2);
 theta   = out.configuration.signals.values(:,3);
-
 t       = out.configuration.time;
 
-V_x_w   = out.walker.signals.values(:,1);
-V_y_w   = out.walker.signals.values(:,2);
-
 figure(1)
-set(gcf,'position',[100,100,1800,700])
-subplot(1,2,1)
+set(gcf,'position',[400,300,1000,800])
 
 %% Body frame, represented by a triangle
+
 %%
 % Shape
 unicycle_size=0.2;
@@ -63,59 +53,30 @@ set(gca,'fontname','Times','fontsize',12,'fontweight','normal','GridLineStyle','
 xlabel('[m]');ylabel('[m]');
 
 %%
-%Plot dimension of the platform
+% Plot dimension of the platform
 x1=-1.5;
 x2=1.5;
 y1=1.5;
 y2=-1.5;
 x_platform = [x1, x2, x2, x1, x1];
 y_platform = [y1, y1, y2, y2, y1];
-plot(x_platform, y_platform, 'b--', 'LineWidth', 1);
+plot(x_platform, y_platform, 'b--', 'LineWidth', 1.2);
 plot(0,0,'b*');
 
 %%
-pause(0.5)
-subplot(1,2,1)
 h = animatedline;
 axis([-2, 2, -2, 2]);
-subplot(1,2,2)
 hold on;
 grid on;
-h1 = animatedline;
-h1.Color = 'r';
-h2 = animatedline;
-h2.Color = 'b';
-axis([0 40 -3 3]); 
-set(gca,'fontname','Times','fontsize',12,'fontweight','normal','GridLineStyle','--');box on;
-%plot(x, y, 'k', 'linewidth', 1.2)
-ylabel('[m/s]');xlabel('[seconds]');
-for i = 1:length(x)
+ylabel('[m]');xlabel('[m]');
+plot(x,y,'k');
+j=1;
+for i = 1:20:length(x)
+    %i = i*j;
     linkx(i,:) = [0:0.02:0.5]*cos(theta(i))+x(i);
     linky(i,:) = [0:0.02:0.5]*sin(theta(i))+y(i);
-    subplot(1,2,1)
-    addpoints(h,x(i),y(i));
-    subplot(1,2,1)
-    aux = plot(x(i),y(i),'r--o','linewidth',2); 
-    subplot(1,2,1)
+    aux = plot(x(i),y(i),'r--o','LineWidth',2); 
     aux1 = plot(linkx(i,:),linky(i,:),'g','linewidth',1.5);
-    
-    subplot(1,2,2)
-    addpoints(h1, t(i), V_x_w(i));
-    subplot(1,2,2)
-    addpoints(h2, t(i), V_y_w(i));
-    legend('V walker in x','V walker in y')
-    
-    pause(0.05)  % the timing is ten times less then the real one (0.5) 
-    drawnow
-    
-    delete(aux1)
-    delete(aux)
+    %j = j;
 end
-%{
-hold on;
-grid on;
-axis([0 40 -3 3]); 
-set(gca,'fontname','Times','fontsize',12,'fontweight','normal','GridLineStyle','--');box on;
-plot(t,V_x_w,'r')
-plot(t,V_y_w,'b')
-%}
+
