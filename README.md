@@ -36,7 +36,12 @@ The simulation is in the directory **code/MPC_walker_velocity**. To open it:
  	
 The simulation will be opened automatically.
 
+Final project Control Problems in Robotics, La Sapienza University of Rome.
 
+Reference:
+A. De Luca, R. Mattone, P. Robuffo Giordano, H. Ulbrich, M. Schwaiger, M. Van den Bergh, E. Koller-Meier, and
+L. Van Gool. Motion control of the cybercarpet platform. IEEE Transactions on Control Systems Technology, 21
+(2):410–427, 2013. doi: 10.1109/TCST.2012.2185051.
 
 
 
