@@ -1,4 +1,4 @@
-# LHI-module-finale-project
+# CyberCarpet acceleration level control of walker position (nonlinear MPC method)
 In this work, it is proposed a controller at acceleration level for a CyberCarpet platform. This platform is a type of
 cyberwalk platform, which is used for virtual reality exploration. The user has to be fully immersed in the virtual reality,
 free to move in any direction. To make this possible it is necessary a locomotion support, like a cyberwalk platform,
